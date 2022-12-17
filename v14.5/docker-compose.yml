@@ -1,0 +1,15 @@
+services:
+  mc:
+    # image: wrwalker/mmc1-minecraft
+    build: .
+    environment:
+      EULA: "true"
+    ports:
+      - "25565:25565"
+    volumes:
+      - type: bind
+        source: data
+        target: /mnt/mmc1
+    restart: unless-stopped
+volumes:
+  data:

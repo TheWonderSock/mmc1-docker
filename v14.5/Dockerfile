@@ -14,8 +14,12 @@ RUN curl -sL https://mediafilez.forgecdn.net/files/4160/224/Medieval+MC+FABRIC+S
 RUN mkdir -p /app
 RUN unzip -qo /root/mmc1.zip -d /app/
 WORKDIR /app/
+RUN ls -l > test.txt
+# RUN mv "Medieval MC FABRIC Server Pack 1.19.2" mmc1 \
+#     && mv mmc1/* .
+RUN mv Medieval\ MC\ FABRIC\ Server\ Pack\ 1.19.2/* .
 COPY eula.txt /app/eula.txt
-RUN dos2unix /app/start.sh
+# RUN dos2unix /app/start.sh
 ENTRYPOINT mkdir -p /mnt/mmc1; \
     echo "Copying server files over to mount location /mnt/mmc1"; \
     /bin/cp -R /app/ /mnt/mmc1; \
@@ -25,4 +29,4 @@ ENTRYPOINT mkdir -p /mnt/mmc1; \
     cd /mnt/mmc1/app/; \
     /bin/bash start.sh; \
     echo "start.sh exited! Sleeping infinitely.\n"; \
-    sleep infinitely
+    sleep infinity
