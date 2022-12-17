@@ -1,6 +1,5 @@
 FROM ubuntu:latest
 EXPOSE 25565/tcp
-EXPOSE 19132/udp
 SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update && apt-get install -y \
@@ -19,7 +18,6 @@ COPY eula.txt /app/eula.txt
 ENTRYPOINT mkdir -p /mnt/mmc1; \
     echo "Copying server files over to mount location /mnt/mmc1"; \
     /bin/cp -R /app/ /mnt/mmc1; \
-    echo "Finished moving files"; \
     cd /mnt/mmc1/app/; \
     echo "Starting start.sh\n"; \
     /bin/bash start.sh; \
